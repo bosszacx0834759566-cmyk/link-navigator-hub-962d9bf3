@@ -7,7 +7,6 @@ import { TopNav } from '@/components/ololink/top-nav';
 import { ContextPanel } from '@/components/ololink/context-panel';
 import { ObjectCard } from '@/components/ololink/object-card';
 import { Dock } from '@/components/ololink/dock';
-import { ViewSwitch } from '@/components/ololink/view-switch';
 
 const MapScene = lazy(() =>
   import('@/components/ololink/map-scene').then((m) => ({ default: m.MapScene }))
