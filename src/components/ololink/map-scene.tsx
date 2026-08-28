@@ -7,6 +7,7 @@ import { earthBasemap } from '@/lib/earth-basemap';
 import { cn } from '@/lib/utils';
 import type { OloLinkState } from '@/hooks/use-ololink';
 import {
+  AMBIENT_CELLS,
   ASSETS,
   ASSET_BY_ID,
   STATUS_META,
@@ -98,6 +99,10 @@ function NodeGlyph({ kind, color }: { kind: AssetKind; color: string }) {
  */
 export function MapScene({ state }: { state: OloLinkState }) {
   const { links, route, profile, selection, layers, techFilter, telemetry } = state;
+
+  // scenarios with a clear sky still show a faint ambient cloud field so the
+  // weather layer toggle always has a visible effect
+  const weatherCells = profile.weather.length ? profile.weather : AMBIENT_CELLS;
 
   // shared scene clock -> live satellite ground tracks
   const [t, setT] = useState(() => sceneTime());
@@ -341,7 +346,7 @@ export function MapScene({ state }: { state: OloLinkState }) {
 
         {/* weather cells — smooth heat-map gradients, low opacity */}
         {layers.weather &&
-          profile.weather.map((c) => {
+          weatherCells.map((c) => {
             const p = project(c.lat, c.lon);
             const color = WEATHER_COLOR[c.kind];
             const r = 12 + c.size * 90;

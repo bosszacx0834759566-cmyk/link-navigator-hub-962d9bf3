@@ -214,10 +214,21 @@ export interface ScenarioProfile {
   alerts: { id: string; level: 'INFO' | 'WARN' | 'CRITICAL'; text: string }[];
 }
 
+/**
+ * Purely visual baseline cloud field, shown when the active scenario carries no
+ * weather cells. Not part of routing/exposure maths — display only.
+ */
+export const AMBIENT_CELLS: WeatherCell[] = [
+  { id: 'wa1', name: 'Thin cirrus APAC', lat: 11, lon: 104, size: 0.1, severity: 12, kind: 'CLOUD' },
+  { id: 'wa2', name: 'Thin cirrus NA', lat: 38, lon: -101, size: 0.09, severity: 10, kind: 'CLOUD' },
+  { id: 'wa3', name: 'Marine layer ATL', lat: 24, lon: -42, size: 0.12, severity: 14, kind: 'CLOUD' },
+];
+
 const CLOUD_CELLS: WeatherCell[] = [
   { id: 'w1', name: 'Cloud deck TH-4', lat: 13, lon: 101, size: 0.16, severity: 46, kind: 'CLOUD' },
   { id: 'w2', name: 'Cloud deck US-2', lat: 40, lon: -104, size: 0.14, severity: 38, kind: 'CLOUD' },
 ];
+
 
 const RAIN_CELLS: WeatherCell[] = [
   { id: 'w1', name: 'Monsoon band TH', lat: 13.5, lon: 100.8, size: 0.2, severity: 74, kind: 'RAIN' },

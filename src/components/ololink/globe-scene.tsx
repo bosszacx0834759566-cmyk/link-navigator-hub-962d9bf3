@@ -28,6 +28,7 @@ import {
   type LinkState,
   type ScenarioProfile,
   type Segment,
+  AMBIENT_CELLS,
   type WeatherCell,
 } from '@/lib/ololink';
 import type { OloLinkState, Selection } from '@/hooks/use-ololink';
@@ -1814,7 +1815,8 @@ function SceneContent({
 
   const visibleWeather = useMemo(() => {
     if (!detailed) return [];
-    return profile.weather.filter((c) => {
+    const cells = profile.weather.length ? profile.weather : AMBIENT_CELLS;
+    return cells.filter((c) => {
       if (!activeRegion) return true;
       const r = REGION_BY_ID[activeRegion];
       if (!r) return true;
