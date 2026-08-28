@@ -7,7 +7,6 @@ import { TopNav } from '@/components/ololink/top-nav';
 import { ContextPanel } from '@/components/ololink/context-panel';
 import { ObjectCard } from '@/components/ololink/object-card';
 import { Dock } from '@/components/ololink/dock';
-import { ViewSwitch } from '@/components/ololink/view-switch';
 
 const MapScene = lazy(() =>
   import('@/components/ololink/map-scene').then((m) => ({ default: m.MapScene }))
@@ -90,10 +89,10 @@ function Explorer() {
         active={state.panel}
         onToggle={state.togglePanel}
         alertCount={state.profile.alerts.length}
+        view={state.view}
+        onViewChange={state.setView}
       />
 
-      {/* view mode — same mission state, different projection */}
-      <ViewSwitch view={state.view} onChange={state.setView} />
 
       {/* LEVEL 3 — contextual side panel */}
       <ContextPanel state={state} />

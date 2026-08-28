@@ -1,8 +1,9 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import type { RailId } from '@/hooks/use-ololink';
+import type { RailId, ViewMode } from '@/hooks/use-ololink';
 import { RAIL_ITEMS } from './rail';
+import { ViewSwitch } from './view-switch';
 import logoUrl from '@/assets/logo.png';
 
 function TopNavButton({
@@ -52,10 +53,14 @@ export function TopNav({
   active,
   onToggle,
   alertCount,
+  view,
+  onViewChange,
 }: {
   active: RailId | null;
   onToggle: (id: RailId) => void;
   alertCount: number;
+  view: ViewMode;
+  onViewChange: (v: ViewMode) => void;
 }) {
   const main = RAIL_ITEMS.filter((i) => i.id !== 'settings');
   const settings = RAIL_ITEMS.find((i) => i.id === 'settings')!;
@@ -82,6 +87,9 @@ export function TopNav({
           />
         ))}
       </div>
+
+      {/* spatial view mode switch — same mission state, different projection */}
+      <ViewSwitch view={view} onChange={onViewChange} />
 
       {/* camera view menu — mounted here by GlobeScene via portal */}
       <div id="ololink-view-menu-slot" className="flex shrink-0 items-center" />
