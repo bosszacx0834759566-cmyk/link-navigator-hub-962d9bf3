@@ -90,10 +90,10 @@ function Explorer() {
         active={state.panel}
         onToggle={state.togglePanel}
         alertCount={state.profile.alerts.length}
+        view={state.view}
+        onViewChange={state.setView}
       />
 
-      {/* view mode — same mission state, different projection */}
-      <ViewSwitch view={state.view} onChange={state.setView} />
 
       {/* LEVEL 3 — contextual side panel */}
       <ContextPanel state={state} />

@@ -15,7 +15,7 @@ export function ViewSwitch({ view, onChange }: { view: ViewMode; onChange: (v: V
     <div
       role="group"
       aria-label="Spatial view mode"
-      className="pointer-events-auto absolute left-1/2 top-[62px] z-30 flex -translate-x-1/2 items-center gap-0.5 rounded-full border border-white/[0.08] bg-[#070b14]/85 p-0.5 backdrop-blur-md"
+      className="flex items-center gap-0.5 rounded-full border border-white/[0.08] bg-[#070b14]/85 p-0.5 backdrop-blur-md"
     >
       {MODES.map((m) => {
         const active = view === m.id;
